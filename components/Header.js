@@ -51,6 +51,18 @@ const Header = (props) => {
                     Create Doc
                 </Button>
             </NextLink>
+            <NextLink href="/upload" passHref>
+                <Button
+                    variant="outline"
+                    _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+                    mx={{ base: 3, md: 7 }}
+                    mb={{ base: 3, md: 0 }}
+                    as="a"
+
+                >
+                    Upload Doc
+                </Button>
+            </NextLink>
         </>
     )
 
