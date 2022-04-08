@@ -1,0 +1,30 @@
+{
+  "name": "club-management",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.7",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "axios": "^0.26.1",
+    "cogo-toast": "^4.2.3",
+    "framer-motion": "^6",
+    "jwt-decode": "^3.1.2",
+    "next": "12.1.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-file-viewer": "^1.2.1",
+    "react-icons": "^4.3.1"
+  },
+  "devDependencies": {
+    "eslint": "8.12.0",
+    "eslint-config-next": "12.1.1"
+  }
+}
