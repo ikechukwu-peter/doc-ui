@@ -26,7 +26,7 @@ export default function Home() {
         bg="teal.500"
         color="whiteAlpha.900"
       >
-        Create a club
+        Create a doc
       </Button>
     </NextLink>
   )
