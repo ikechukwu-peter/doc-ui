@@ -38,14 +38,14 @@ const CreateDoc = () => {
                     'Authorization': `Bearer ${token}`
                 }
             })
-            console.log(newClub)
+            console.log(newDoc)
             const { hide, hideAfter } = cogoToast.success(`Document created successfully`, {
                 onClick: () => {
                     hide();
                 },
                 hideAfter: 3
             });
-            if (newClub) {
+            if (newDoc) {
                 window.location.href = newDoc.data.data
                 // router.push(`/document/${newDoc.data.newClub.id}`)
             }
