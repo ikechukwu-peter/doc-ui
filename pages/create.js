@@ -29,7 +29,7 @@ const CreateDoc = () => {
             setLoading(true)
             let newDoc = await axios({
                 method: "POST",
-                url: `https://clubmanagementapi.herokuapp.com/club/create/club`,
+                url: `https://docbran.herokuapp.com/doc/create`,
                 data: {
                     name,
                     document
@@ -46,12 +46,12 @@ const CreateDoc = () => {
                 hideAfter: 3
             });
             if (newClub) {
-                window.location.href = newDoc.data
+                window.location.href = newDoc.data.data
                 // router.push(`/document/${newDoc.data.newClub.id}`)
             }
         } catch (error) {
             console.log(error)
-            let errorResponse = error.response ? error.response.error : "Check your internet connection"
+            let errorResponse = error.response.data ? error.response.data.error : "Check your internet connection"
             const { hide, hideAfter } = cogoToast.error(`${errorResponse}`, {
                 onClick: () => {
                     hide();
@@ -98,7 +98,7 @@ const CreateDoc = () => {
                         Create Document
                     </Heading>
                     <form
-                        onSubmit={(e) => createNewClub(e)}
+                        onSubmit={(e) => createNewDoc(e)}
                     >
 
                         <FormControl
@@ -114,7 +114,7 @@ const CreateDoc = () => {
                             >Document Name</FormLabel>
                             <Input
                                 fontSize={["1.1rem", "1.1rem", "1.3rem", "1.3rem"]}
-                                id='name' type='text' placeholder='Club name'
+                                id='name' type='text' placeholder='document name'
                                 _focus={
                                     {
                                         borderColor: "teal.200",
@@ -132,7 +132,7 @@ const CreateDoc = () => {
                                 fontSize={["1.1rem", "1.1rem", "1.2rem", "1.3rem"]}
                                 mt="1rem"
                                 focusBorderColor="purple.700"
-                                placeholder='Enter your message'
+                                placeholder='Enter your text'
                                 size='md'
                                 resize={"vertical"}
                                 isRequired

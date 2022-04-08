@@ -16,21 +16,13 @@ import { useRouter } from 'next/router'
 
 
 export default function UploadPage() {
-    const [file, setFile] = useState(null)
+    const [file, setFile] = useState('')
     const [loading, setLoading] = useState(false)
 
     const router = useRouter()
 
     //allowed mimetypes for documents
     const allowed = ["application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
-
-
-    useLayoutEffect(() => {
-        const isAuthenticated = localStorage.getItem('token')
-        if (isAuthenticated) {
-            router.push('/dashboard')
-        }
-    }, [router])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -74,7 +66,7 @@ export default function UploadPage() {
                     }
                 } catch (error) {
                     console.log(error)
-                    let errorResponse = error.response ? error.response.error : "Check your internet connection"
+                    let errorResponse = error.response.data ? error.response.data.error : "Check your internet connection"
 
                     const { hide, hideAfter } = cogoToast.error(`${errorResponse}`, {
                         onClick: () => {
@@ -134,14 +126,7 @@ export default function UploadPage() {
                     m="auto"
 
                 >
-                    <Heading
-                        fontWeight={600}
-                        fontSize="3rem"
-                        mb="1rem"
-                        color="teal.200"
-                    >
-                        Sign up to create docs
-                    </Heading>
+                    
                     <form
                         encType="multipart/form-data"
                         onSubmit={(e) => handleSubmit(e)}

@@ -18,23 +18,23 @@ const Header = (props) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const { isOpen, onOpen, onClose } = useDisclosure();
     const handleToggle = () => (isOpen ? onClose() : onOpen());
-    
-    const check = useCallback(() => {  
+
+    const check = useCallback(() => {
         // Perform localStorage action
         const token = localStorage.getItem('token')
         if (token) {
             setIsAuthenticated(true)
         }
     }, [])
-   
+
     useEffect(() => {
-    check()
-    }, 
-     [])
+        check()
+    },
+        [])
 
     const logOut = () => {
         localStorage.clear('token')
-        window.location.href= '/'
+        window.location.href = '/'
     }
 
     const dashAuth = (
@@ -48,7 +48,7 @@ const Header = (props) => {
                     as="a"
 
                 >
-                    Create Club
+                    Create Doc
                 </Button>
             </NextLink>
         </>
@@ -85,29 +85,7 @@ const Header = (props) => {
                     Dashboard
                 </Button>
             </NextLink>
-            <NextLink href="/users" passHref>
-                <Button
-                    mx={{ base: 3, md: 7 }}
-                     mb={{ base: 3, md: 0 }}
-                    variant="outline"
-                    _hover={{ bg: "teal.700", borderColor: "teal.700" }}
-                    as="a"
-                >
-                    All User
-                </Button>
-            </NextLink>
-           
-            <NextLink href="/clubs" passHref>
-                <Button
-                    mx={{ base: 3, md: 7 }}
-                     mb={{ base: 3, md: 0 }}
-                    variant="outline"
-                    _hover={{ bg: "teal.700", borderColor: "teal.700" }}
-                    as="a"
-                >
-                    Your Club
-                </Button>
-            </NextLink>
+
             <Button
                 mx={{ base: 3, md: 7 }}
                 variant="outline"
@@ -160,7 +138,7 @@ const Header = (props) => {
         >
             <Flex align="center" mr={5}>
                 <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-                    FaRoyale
+                    Doc
                 </Heading>
             </Flex>
 

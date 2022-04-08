@@ -32,13 +32,13 @@ export default function Home() {
   )
 
   const authRoute = (
-    <NextLink href="/newdoc" passHref>
+    <NextLink href="/create" passHref>
       <Button
         as='a'
         bg="teal.500"
         color="whiteAlpha.900"
       >
-        Create a club
+        Create a doc
       </Button>
     </NextLink>
   )
@@ -67,7 +67,7 @@ export default function Home() {
               mx="2rem"
 
             >
-              Welcome to Doc, a place to create, read, upload and download pdf
+              Welcome to Doc, a place to create, read, <br /> upload and download pdf
             </Text>
           </Box>
           <Box

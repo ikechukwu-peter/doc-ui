@@ -36,7 +36,7 @@ export default function App() {
           </ButtonGroup>
         </Stack>
         <Text fontSize="sm" color="subtle">
-          &copy; {new Date().getFullYear()} FaRoyale, Inc. All rights reserved.
+          &copy; {new Date().getFullYear()} Doc, Inc. All rights reserved.
         </Text>
       </Stack>
     </Container>

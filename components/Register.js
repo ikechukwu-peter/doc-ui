@@ -39,7 +39,7 @@ export default function Contact() {
                 setLoading(true)
                 let res = await axios({
                     method: "POST",
-                    url: 'https://clubmanagementapi.herokuapp.com/user/register',
+                    url: 'https://docbran.herokuapp.com/user/create',
                     data: {
                         username,
                         password
@@ -59,7 +59,7 @@ export default function Contact() {
                 }
             } catch (error) {
                 console.log(error)
-                let errorResponse = error.response ? error.response.error : "Check your internet connection"
+                let errorResponse = error.response.data ? error.response.data.error : "Check your internet connection"
 
                 const { hide, hideAfter } = cogoToast.error(`${errorResponse}`, {
                     onClick: () => {
@@ -127,6 +127,26 @@ export default function Contact() {
                             isRequired
                             w={["100%", "100%", "100%", "80%"]}
                         >
+                            <FormLabel
+                                fontSize={["1rem", "1.1rem", "1.4rem", "1.6rem"]}
+                                htmlFor='username'
+                                mt="2rem"
+                            >Username</FormLabel>
+                            <Input
+                                fontSize={["1.1rem", "1.1rem", "1.2rem", "1.3rem"]}
+                                id='username' type='text' placeholder='Enter Username'
+                                _focus={
+                                    {
+                                        borderColor: "teal.200",
+                                        borderWidth: ".15rem"
+                                    }
+                                }
+                                _placeholder={{
+                                    // color: "whiteAlpha.800"                              
+                                }}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
 
                             <FormLabel
                                 fontSize={["1rem", "1.1rem", "1.4rem", "1.6rem"]}
@@ -147,27 +167,6 @@ export default function Contact() {
                                 }}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                            />
-
-                            <FormLabel
-                                fontSize={["1rem", "1.1rem", "1.4rem", "1.6rem"]}
-                                htmlFor='username'
-                                mt="2rem"
-                            >Username</FormLabel>
-                            <Input
-                                fontSize={["1.1rem", "1.1rem", "1.2rem", "1.3rem"]}
-                                id='username' type='text' placeholder='Enter Username'
-                                _focus={
-                                    {
-                                        borderColor: "teal.200",
-                                        borderWidth: ".15rem"
-                                    }
-                                }
-                                _placeholder={{
-                                    // color: "whiteAlpha.800"                              
-                                }}
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
                             />
 
                             <Button
@@ -194,7 +193,7 @@ export default function Contact() {
                                 {loading ? <Spinner
                                     thickness='4px'
                                     speed='0.65s'
-                                    bgColor='gray.200'
+                                    emptyColor='gray.200'
                                     color='whiteAlpha.500'
                                     size='md'
                                 /> : "Submit"}

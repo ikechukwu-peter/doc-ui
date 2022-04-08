@@ -1,8 +1,12 @@
 import { ButtonGroup, Container, IconButton, Stack, Flex, Box, Text, FormControl, FormLabel, Input, Button } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import NextLink from 'next/link'
+import axios from 'axios'
+import cogoToast from 'cogo-toast'
 import * as React from 'react'
 
 export default function DashboardPage({ user, docs }) {
+    console.log(docs)
     const router = useRouter()
 
     const deleteDoc = async (docId) => {
@@ -26,7 +30,7 @@ export default function DashboardPage({ user, docs }) {
 
         } catch (error) {
             console.log(error)
-            let errorResponse = error.response ? error.response.error : "Check your internet connection"
+            let errorResponse = error.response.data ? error.response.data.error : "Check your internet connection"
             const { hide, hideAfter } = cogoToast.error(`${errorResponse}`, {
                 onClick: () => {
                     hide();
@@ -65,9 +69,9 @@ export default function DashboardPage({ user, docs }) {
     //     }
     // }
 
-    const viewDoc = async (docName) => {
-        router.push(`/read/${docName}`)
-    }
+    // const viewDoc = async (docName) => {
+    //     router.push(`read/${docName}`)
+    // }
 
     return (
         <Flex>
@@ -76,11 +80,11 @@ export default function DashboardPage({ user, docs }) {
                     fontSize={{ base: '2rem', md: '3rem' }}
                     mx="1.4rem"
                 >
-                    Welcome {user.username}
+                    Welcome {user.charAt(0).toUpperCase() + user.slice(1)}
                 </Text>
                 {docs.length > 0 ? docs.map((doc) => {
                     return (
-                        <Box key={doc.id}>
+                        <Box key={doc._id}>
                             <Flex
                                 flexDir={{ base: 'column', md: 'row' }}
                                 justifyContent={{ base: 'space-between' }}
@@ -98,21 +102,39 @@ export default function DashboardPage({ user, docs }) {
                                 </Box>
                                 <Box
                                     py="2rem"
+                                    d="flex"
+                                    flexDir={{ base: 'column', md: 'row' }}
 
                                 >
-                                    <Button
+
+                                    <NextLink href={`read/${doc._id}`} passHref>
+                                        <Button
+                                            size='md'
+                                            colorScheme="teal.800"
+                                            bg="teal.500"
+                                            as='a'
+                                            my="1rem"
+                                            mx={{ base: 'none', md: '1rem' }}
+                                        >
+                                            View
+                                        </Button>
+                                    </NextLink>
+
+                                    {/* <Button
                                         size='md'
                                         colorScheme="teal.800"
                                         bg="teal.500"
                                         onClick={() => viewDoc(doc.name)}> View Document
-                                    </Button>
+                                    </Button> */}
                                     <Button
                                         as="a"
                                         download
                                         size='md'
-                                        href={doc.name}
+                                        href={doc.url}
                                         colorScheme="teal.800"
                                         bg="teal.500"
+                                        my="1rem"
+                                        mx={{ base: 'none', md: '1rem' }}
                                     // onClick={() => downloadDoc(doc.docId)}
                                     >
                                         Download Document
@@ -121,16 +143,36 @@ export default function DashboardPage({ user, docs }) {
                                         size='md'
                                         colorScheme="teal.800"
                                         bg="teal.500"
-                                        onClick={() => deleteDoc(doc.id)}> Delete Document
+                                        my="1rem"
+                                        mx={{ base: 'none', md: '1rem' }}
+                                        onClick={() => deleteDoc(doc._id)}> Delete Document
                                     </Button>
                                 </Box>
 
                             </Flex>
                         </Box>
                     )
-                }) : null}
+                }) : <Box>
+                    <Text
+                        fontSize="1.2rem"
+                        mx="1.4rem"
+                    >You have no document yet</Text>
+                    <NextLink href='/create' passHref>
+                        <Button
+                            size='md'
+                            colorScheme="teal.800"
+                            bg="teal.500"
+                            as='a'
+                            my="1rem"
+                            mx={{ base: 'none', md: '1rem' }}
+                        >
+                            Click to create one
+                        </Button>
+                    </NextLink>
+                </Box>}
 
             </Box>
         </Flex>
     )
 }
+

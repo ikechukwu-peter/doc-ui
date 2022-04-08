@@ -37,7 +37,7 @@ export default function Login() {
                 setLoading(true)
                 let res = await axios({
                     method: "POST",
-                    url: 'https://clubmanagementapi.herokuapp.com/user/login',
+                    url: 'https://docbran.herokuapp.com/user/login',
                     data: {
                         username,
                         password
@@ -52,13 +52,16 @@ export default function Login() {
                     },
                     hideAfter: 3
                 });
-                if (res.data.token) {
-                    localStorage.setItem("token", res.data.token)
-                    window.location.href = '/dashboard'
+
+                if (res.data.data.token) {
+                    localStorage.setItem("token", res.data.data.token)
+                    window.location.href = "/dashboard"
                 }
+
+               
             } catch (error) {
-                console.log(error)
-                let errorResponse = error.response ? error.response.error : "Check your internet connection"
+                console.log(error.response)
+                let errorResponse = error.response.data ? error.response.data.error : "Check your internet connection"
 
                 const { hide, hideAfter } = cogoToast.error(`${errorResponse}`, {
                     onClick: () => {
@@ -136,7 +139,7 @@ export default function Login() {
                             >Username</FormLabel>
                             <Input
                                 fontSize={["1.1rem", "1.1rem", "1.3rem", "1.3rem"]}
-                                id='username' type='text' placeholder='Enter your email'
+                                id='username' type='text' placeholder='Enter your username'
                                 _focus={
                                     {
                                         borderColor: "teal.200",

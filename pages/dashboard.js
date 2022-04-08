@@ -26,12 +26,12 @@ const Dashboard = () => {
         }
       })
       if (docs) {
-        setDocs(docs.data)
+        setDocs(docs.data.data)
+        console.log(docs)
       }
-      console.log(docs)
     } catch (error) {
       console.log(error)
-      let errorResponse = error.response ? error.response.error : "Check your internet connection"
+      let errorResponse = error.response.data ? error.response.data.error : "Check your internet connection"
       const { hide, hideAfter } = cogoToast.error(`${errorResponse}`, {
         onClick: () => {
           hide();
