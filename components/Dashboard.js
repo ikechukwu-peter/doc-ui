@@ -116,7 +116,7 @@ export default function DashboardPage({ user, docs }) {
                                             bg="teal.500"
                                             as='a'
                                             my="1rem"
-                                            mx={{ base: 'none', md: '1rem' }}
+                                            mx={{ base: '1.3rem', md: '1.6rem' }}
                                         >
                                             View
                                         </Button>
@@ -136,7 +136,7 @@ export default function DashboardPage({ user, docs }) {
                                         colorScheme="teal.800"
                                         bg="teal.500"
                                         my="1rem"
-                                        mx={{ base: 'none', md: '1rem' }}
+                                        mx={{ base: '1.3rem', md: '1.6rem' }}
                                     // onClick={() => downloadDoc(doc.docId)}
                                     >
                                         Download Document
@@ -146,7 +146,7 @@ export default function DashboardPage({ user, docs }) {
                                         colorScheme="teal.800"
                                         bg="teal.500"
                                         my="1rem"
-                                        mx={{ base: 'none', md: '1rem' }}
+                                        mx={{ base: '1.3rem', md: '1.6rem' }}
                                         onClick={() => deleteDoc(doc._id)}> Delete Document
                                     </Button>
                                 </Box>
