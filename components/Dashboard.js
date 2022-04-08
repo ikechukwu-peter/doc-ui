@@ -164,7 +164,7 @@ export default function DashboardPage({ user, docs }) {
                             bg="teal.500"
                             as='a'
                             my="1rem"
-                            mx={{ base: 'none', md: '1rem' }}
+                            mx={{ base: '1rem', md: '1.4rem' }}
                         >
                             Click to create one
                         </Button>
