@@ -48,7 +48,6 @@ const CreateDoc = () => {
             });
             if (newDoc) {
                router.push('/dashboard')
-              } 
             }
         } catch (error) {
             console.log(error)
