@@ -103,8 +103,8 @@ export default function DashboardPage({ user, docs }) {
                                 <Box
                                     py="2rem"
                                     d="flex"
-                                    alignItems: "center"
-                                    justifyContent: "center"
+                                    alignItems="center"
+                                    justifyContent="center"
                                     flexDir={{ base: 'column', md: 'row' }}
 
                                 >
