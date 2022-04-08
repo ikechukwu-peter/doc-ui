@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import NextLink from 'next/link'
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { Flex, Button, Box, Text } from '@chakra-ui/react'
 
 export default function Home() {

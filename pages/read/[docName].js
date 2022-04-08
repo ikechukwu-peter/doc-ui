@@ -4,13 +4,18 @@ import withAuth from "../../utils/withAuth.js";
 import { useRouter } from 'next/router'
 import { Text, Flex, Box, Button, } from '@chakra-ui/react'
 import cogoToast from 'cogo-toast'
-import FileViewer from 'react-file-viewer';
+import dynamic from 'next/dynamic';
+
+const FileViewer = dynamic(() => import('react-file-viewer'), {
+    ssr: false
+});
+// import { FileViewer } from "react-file-viewer";
 
 const OpenDoc = () => {
     const router = useRouter()
     const { docName } = router.query
 
-    // const [doc, setDoc] = useState([])
+     // const [doc, setDoc] = useState([])
     // const [loading, setLoading] = useState(false)
 
     const onError = () => {
@@ -61,15 +66,11 @@ const OpenDoc = () => {
 
     return (
         <>
-            {
-                typeof window !== "undefined" ?
-                    <FileViewer
-                        fileType={type}
-                        filePath={docName}
-                        // errorComponent={CustomErrorComponent}
-                        onError={onError} /> :
-                    <Text>File failed to open not in window</Text>}
-
+            <FileViewer
+                fileType={type}
+                filePath={docName}
+                // errorComponent={CustomErrorComponent}
+                onError={onError} />
         </>
     );
 };
