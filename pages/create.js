@@ -91,7 +91,7 @@ const CreateDoc = () => {
                 >
                     <Heading
                         fontWeight={600}
-                        fontSize="3rem"
+                        fontSize={["1.5rem", "1.8rem", "2.4rem", "3rem"]}
                         mb="1rem"
                         color="teal.200"
                     >
@@ -114,7 +114,7 @@ const CreateDoc = () => {
                             >Document Name</FormLabel>
                             <Input
                                 fontSize={["1.1rem", "1.1rem", "1.3rem", "1.3rem"]}
-                                id='name' type='text' placeholder='document name'
+                                id='name' type='text' placeholder='Enter document name'
                                 _focus={
                                     {
                                         borderColor: "teal.200",
