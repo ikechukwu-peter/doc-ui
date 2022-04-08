@@ -27,7 +27,8 @@ export default function UploadPage() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (file) {
-            if (allowed.includes(file.mimetype)) {
+            console.log(file)
+            if (allowed.includes(file.type)) {
                 const formData = new FormData()
 
                 // Update the formData object
@@ -154,7 +155,6 @@ export default function UploadPage() {
                                 _placeholder={{
                                     // color: "whiteAlpha.800"                              
                                 }}
-                                value={file}
                                 onChange={(e) => setFile(e.target.files[0])}
                             />
 
