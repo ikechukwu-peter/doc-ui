@@ -13,6 +13,7 @@ import {
 import withAuth from "../utils/withAuth.js";
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import cogoToast from 'cogo-toast'
 
 
 
@@ -46,8 +47,8 @@ const CreateDoc = () => {
                 hideAfter: 3
             });
             if (newDoc) {
-                window.location.href = newDoc.data.data
-                // router.push(`/document/${newDoc.data.newClub.id}`)
+               router.push('/dashboard')
+              } 
             }
         } catch (error) {
             console.log(error)
