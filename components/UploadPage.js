@@ -26,7 +26,6 @@ export default function UploadPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (file) {
             console.log(file)
             if (allowed.includes(file.type)) {
                 const formData = new FormData()
@@ -81,7 +80,7 @@ export default function UploadPage() {
                     setLoading(false)
                     setFile(null)
                 }
-            }
+           } 
             else {
                 const { hide, hideAfter } = cogoToast.warn('only word document is allowed (.doc and .docx).😒', {
                     onClick: () => {
@@ -91,19 +90,6 @@ export default function UploadPage() {
                 });
             }
         }
-
-        else {
-            const { hide, hideAfter } = cogoToast.warn('No file selected, please select a file.😒', {
-                onClick: () => {
-                    hide();
-                },
-                hideAfter: 5
-            });
-        }
-
-
-
-    }
 
     return (
         <Box
