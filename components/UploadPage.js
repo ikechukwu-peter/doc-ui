@@ -78,7 +78,6 @@ export default function UploadPage() {
                 }
                 finally {
                     setLoading(false)
-                    setFile(null)
                 }
            } 
             else {
