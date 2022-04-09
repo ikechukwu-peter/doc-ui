@@ -135,7 +135,7 @@ export default function DashboardPage({ user, docs }) {
                                             as='a'
                                             my="1rem"
                                             mx="1.4rem"
-                                            w="50%"
+                                            p="2rem"
                                             >
                                             View
                                         </Button>
