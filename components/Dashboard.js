@@ -123,7 +123,7 @@ export default function DashboardPage({ user, docs }) {
                                     alignItems="center"
                                     justifyContent="center"
                                     flexDir={{ base: 'column', md: 'row' }}
-                                    mx={{ base: "5.4rem", md: "2rem" }}
+                                    mx={{ base: "2rem", md: "4rem" }}
                         
                                     w="100%"
 
