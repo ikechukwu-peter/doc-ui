@@ -1,15 +1,25 @@
-import {Spinner,  ButtonGroup, Container, IconButton, Stack, Flex, Box, Text, FormControl, FormLabel, Input, Button } from '@chakra-ui/react'
+import { Spinner, ButtonGroup, Container, IconButton, Stack, Flex, Box, Text, FormControl, FormLabel, Input, Button } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 import axios from 'axios'
 import cogoToast from 'cogo-toast'
 import * as React from 'react'
+import { doesNotMatch } from 'assert'
 
 export default function DashboardPage({ user, docs }) {
-    console.log(docs)
     const [loading, setLoading] = React.useState(false)
-    const [allDocs, setAllDocs] = React.useState(docs)
+    const [allDocs, setAllDocs] = React.useState([])
+    console.log(docs)
+
+    React.useEffect(() => {
+        setAllDocs(docs)
+        console.log('useEffect')
+        console.log(allDocs)
+    }, [])
+
     const router = useRouter()
+
+
 
     const deleteDoc = async (docId) => {
         const token = localStorage.getItem('token')
@@ -42,7 +52,7 @@ export default function DashboardPage({ user, docs }) {
                 hideAfter: 3
             });
         }
-        finally{
+        finally {
             setLoading(false)
         }
     }
@@ -113,7 +123,9 @@ export default function DashboardPage({ user, docs }) {
                                     alignItems="center"
                                     justifyContent="center"
                                     flexDir={{ base: 'column', md: 'row' }}
-                                    mx="1.4rem"
+                                    mx={{ base: "5.4rem", md: "6rem" }}
+                                    px="4rem"
+                                    w="100%"
 
                                 >
 
@@ -124,8 +136,7 @@ export default function DashboardPage({ user, docs }) {
                                             bg="teal.500"
                                             as='a'
                                             my="1rem"
-                                            mx={{ base: '1.3rem', md: '1.6rem' }}
-                                        >
+                                            mx="1.4rem"                                        >
                                             View
                                         </Button>
                                     </NextLink>
@@ -144,10 +155,9 @@ export default function DashboardPage({ user, docs }) {
                                         colorScheme="teal.800"
                                         bg="teal.500"
                                         my="1rem"
-                                        mx={{ base: '1.3rem', md: '1.6rem' }}
-                                    // onClick={() => downloadDoc(doc.docId)}
+                                        mx="1.4rem"                                        // onClick={() => downloadDoc(doc.docId)}
                                     >
-                                        Download Document
+                                        Download
                                     </Button>
                                     <Button
                                         size='md'
@@ -163,7 +173,7 @@ export default function DashboardPage({ user, docs }) {
                                             emptyColor='gray.200'
                                             color='whiteAlpha.500'
                                             size='md'
-                                        /> : "Delete Document"
+                                        /> : "Delete"
                                         }
 
                                     </Button>
