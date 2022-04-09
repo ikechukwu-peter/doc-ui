@@ -30,7 +30,7 @@ const Header = (props) => {
     useEffect(() => {
         check()
     },
-        [])
+    [])
 
     const logOut = () => {
         localStorage.clear('token')

@@ -16,7 +16,7 @@ import { useRouter } from 'next/router'
 
 
 export default function UploadPage() {
-    const [file, setFile] = useState('')
+    const [file, setFile] = useState()
     const [loading, setLoading] = useState(false)
 
     const router = useRouter()
@@ -26,69 +26,69 @@ export default function UploadPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-            console.log(file)
-            if (allowed.includes(file.type)) {
-                const formData = new FormData()
+        // console.log(e.target.files[0])
 
-                // Update the formData object
-                formData.append(
-                    "doc",
-                    file,
-                    file.name
-                );
+        console.log(file)
+        if (allowed.includes(file.type)) {
+            const formData = new FormData()
 
-                try {
-                    setLoading(true)
-                    const token = localStorage.getItem('token')
+            // Update the formData object
+            formData.append(
+                "doc",
+                file,
+                file.name
+            );
 
-                    let res = await axios({
-                        method: "POST",
-                        url: 'https://docbran.herokuapp.com/doc/upload',
+            console.log(formData)
 
-                        data: {
-                            formData
-                        },
+            try {
+                setLoading(true)
+                const token = localStorage.getItem('token')
 
+                let res = await axios.post('https://docbran.herokuapp.com/doc/upload', formData,
+                    {
                         headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
+                            'Authorization': `Bearer ${token}`,
+                            "Contetnt-Type": "multipart/form-data"
+
+                        },
                     })
-                    console.log(res.data)
 
-                    const { hide, hideAfter } = cogoToast.success(`upload successful`, {
-                        onClick: () => {
-                            hide();
-                        },
-                        hideAfter: 3
-                    });
-                    if (res.data) {
-                        router.push('/dashboard')
-                    }
-                } catch (error) {
-                    console.log(error)
-                    let errorResponse = error.response.data ? error.response.data.error : "Check your internet connection"
-
-                    const { hide, hideAfter } = cogoToast.error(`${errorResponse}`, {
-                        onClick: () => {
-                            hide();
-                        },
-                        hideAfter: 5
-                    });
-
+                const { hide, hideAfter } = cogoToast.success(`upload successful`, {
+                    onClick: () => {
+                        hide();
+                    },
+                    hideAfter: 3
+                });
+                if (res.data) {
+                    window.location.href = '/dashboard'
+                    // router.push('/dashboard')
                 }
-                finally {
-                    setLoading(false)
-                }
-           } 
-            else {
-                const { hide, hideAfter } = cogoToast.warn('only word document is allowed (.doc and .docx).😒', {
+            } catch (error) {
+                console.log(error)
+                let errorResponse = error.response.data ? error.response.data.error : "Check your internet connection"
+
+                const { hide, hideAfter } = cogoToast.error(`${errorResponse}`, {
                     onClick: () => {
                         hide();
                     },
                     hideAfter: 5
                 });
+
+            }
+            finally {
+                setLoading(false)
             }
         }
+        else {
+            const { hide, hideAfter } = cogoToast.warn('only word document is allowed (.doc and .docx).😒', {
+                onClick: () => {
+                    hide();
+                },
+                hideAfter: 5
+            });
+        }
+    }
 
     return (
         <Box
@@ -112,7 +112,7 @@ export default function UploadPage() {
                     m="auto"
 
                 >
-                    
+
                     <form
                         encType="multipart/form-data"
                         onSubmit={(e) => handleSubmit(e)}
@@ -168,10 +168,10 @@ export default function UploadPage() {
                                 {loading ? <Spinner
                                     thickness='4px'
                                     speed='0.65s'
-                                    bgColor='gray.200'
+                                    emptyColor='gray.200'
                                     color='whiteAlpha.500'
                                     size='md'
-                                /> : "Submit"}
+                                /> : "Upload"}
                             </Button>
 
                         </FormControl>

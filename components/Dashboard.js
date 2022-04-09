@@ -1,4 +1,4 @@
-import { ButtonGroup, Container, IconButton, Stack, Flex, Box, Text, FormControl, FormLabel, Input, Button } from '@chakra-ui/react'
+import {Spinner,  ButtonGroup, Container, IconButton, Stack, Flex, Box, Text, FormControl, FormLabel, Input, Button } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import NextLink from 'next/link'
 import axios from 'axios'
@@ -7,12 +7,14 @@ import * as React from 'react'
 
 export default function DashboardPage({ user, docs }) {
     console.log(docs)
+    const [loading, setLoading] = React.useState(false)
+    const [allDocs, setAllDocs] = React.useState(docs)
     const router = useRouter()
 
     const deleteDoc = async (docId) => {
         const token = localStorage.getItem('token')
         try {
-
+            setLoading(true)
             await axios({
                 method: "DELETE",
                 url: `https://docbran.herokuapp.com/doc/delete/${docId}`,
@@ -20,6 +22,8 @@ export default function DashboardPage({ user, docs }) {
                     'Authorization': `Bearer ${token}`
                 }
             })
+            //Remove from DOM
+            setAllDocs(allDocs.filter((doc) => doc._id != docId))
 
             const { hide, hideAfter } = cogoToast.success(`deleted successfully`, {
                 onClick: () => {
@@ -37,6 +41,9 @@ export default function DashboardPage({ user, docs }) {
                 },
                 hideAfter: 3
             });
+        }
+        finally{
+            setLoading(false)
         }
     }
     // const downloadDoc = async (docId) => {
@@ -82,7 +89,7 @@ export default function DashboardPage({ user, docs }) {
                 >
                     Welcome {user.charAt(0).toUpperCase() + user.slice(1)}
                 </Text>
-                {docs.length > 0 ? docs.map((doc) => {
+                {allDocs.length > 0 ? allDocs.map((doc) => {
                     return (
                         <Box key={doc._id}>
                             <Flex
@@ -106,6 +113,7 @@ export default function DashboardPage({ user, docs }) {
                                     alignItems="center"
                                     justifyContent="center"
                                     flexDir={{ base: 'column', md: 'row' }}
+                                    mx="1.4rem"
 
                                 >
 
@@ -147,8 +155,19 @@ export default function DashboardPage({ user, docs }) {
                                         bg="teal.500"
                                         my="1rem"
                                         mx={{ base: '1.3rem', md: '1.6rem' }}
-                                        onClick={() => deleteDoc(doc._id)}> Delete Document
+                                        onClick={() => deleteDoc(doc._id)}>
+
+                                        {loading ? <Spinner
+                                            thickness='4px'
+                                            speed='0.65s'
+                                            emptyColor='gray.200'
+                                            color='whiteAlpha.500'
+                                            size='md'
+                                        /> : "Delete Document"
+                                        }
+
                                     </Button>
+
                                 </Box>
 
                             </Flex>

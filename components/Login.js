@@ -4,12 +4,9 @@ import {
     Box,
     Heading,
     Button,
-    Image,
     Input,
     FormControl,
     FormLabel,
-    FormHelperText,
-    Textarea,
     Spinner,
 
 } from '@chakra-ui/react'
