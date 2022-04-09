@@ -136,7 +136,9 @@ export default function DashboardPage({ user, docs }) {
                                             bg="teal.500"
                                             as='a'
                                             my="1rem"
-                                            mx="1.4rem"                                        >
+                                            mx="1.4rem"
+                                            w="50%"
+                                            >
                                             View
                                         </Button>
                                     </NextLink>
