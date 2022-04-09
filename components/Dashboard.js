@@ -15,7 +15,7 @@ export default function DashboardPage({ user, docs }) {
         setAllDocs(docs)
         console.log('useEffect')
         console.log(allDocs)
-    }, [])
+    }, [docs])
 
     const router = useRouter()
 
