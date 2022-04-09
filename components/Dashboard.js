@@ -4,7 +4,6 @@ import NextLink from 'next/link'
 import axios from 'axios'
 import cogoToast from 'cogo-toast'
 import * as React from 'react'
-import { doesNotMatch } from 'assert'
 
 export default function DashboardPage({ user, docs }) {
     const [loading, setLoading] = React.useState(false)
@@ -121,7 +120,6 @@ export default function DashboardPage({ user, docs }) {
                                     py="2rem"
                                     d="flex"
                                     alignItems="center"
-                                    justifyContent="center"
                                     flexDir={{ base: 'column', md: 'row' }}
                                     mx={{ base: "2rem", md: "4rem" }}
                         
