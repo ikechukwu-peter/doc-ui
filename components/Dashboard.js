@@ -134,8 +134,8 @@ export default function DashboardPage({ user, docs }) {
                                             bg="teal.500"
                                             as='a'
                                             my="1rem"
-                                            mx="1.4rem"
-                                            p="2rem"
+                                            mx="1rem"
+                                            
                                             >
                                             View
                                         </Button>
@@ -155,7 +155,7 @@ export default function DashboardPage({ user, docs }) {
                                         colorScheme="teal.800"
                                         bg="teal.500"
                                         my="1rem"
-                                        mx="1.4rem"                                        // onClick={() => downloadDoc(doc.docId)}
+                                        mx="1rem"                                        // onClick={() => downloadDoc(doc.docId)}
                                     >
                                         Download
                                     </Button>
@@ -164,7 +164,7 @@ export default function DashboardPage({ user, docs }) {
                                         colorScheme="teal.800"
                                         bg="teal.500"
                                         my="1rem"
-                                        mx={{ base: '1.3rem', md: '1.6rem' }}
+                                        mx={{ base: '1rem', md: '1rem' }}
                                         onClick={() => deleteDoc(doc._id)}>
 
                                         {loading ? <Spinner
