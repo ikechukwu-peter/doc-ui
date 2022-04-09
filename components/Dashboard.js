@@ -109,7 +109,7 @@ export default function DashboardPage({ user, docs }) {
                                 ml="2rem"
                             >
                                 <Box
-                                    py="2rem"
+                                    py="1rem"
                                 >
                                     <Text as='h2'
                                         color='teal.600'
