@@ -62,8 +62,6 @@ const CreateDoc = () => {
         }
         finally {
             setLoading(false)
-            setName('')
-            setDocument('')
         }
     }
     return (
