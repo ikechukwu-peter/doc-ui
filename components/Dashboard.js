@@ -105,7 +105,7 @@ export default function DashboardPage({ user, docs }) {
                                 flexDir={{ base: 'column', md: 'row' }}
                                 justifyContent={{ base: 'space-between' }}
                                 alignItems={{ base: 'center' }}
-                                w="20%"
+                                w="100%"
                                 ml="2rem"
                             >
                                 <Box
@@ -114,17 +114,18 @@ export default function DashboardPage({ user, docs }) {
                                     <Text as='h2'
                                         color='teal.600'
                                         fontSize="1.5rem"
-                                    > {doc.name}</Text>
+                                    >
+                                        {doc.name}
+                                    </Text>
                                 </Box>
                                 <Box
                                     py="2rem"
                                     d="flex"
                                     alignItems="center"
+                                    justifyContent={{ base: 'center', md: 'space-around' }}
                                     flexDir={{ base: 'column', md: 'row' }}
                                     mx={{ base: "2rem", md: "4rem" }}
-                        
                                     w="100%"
-
                                 >
 
                                     <NextLink href={`read/${doc._id}`} passHref>
@@ -135,8 +136,8 @@ export default function DashboardPage({ user, docs }) {
                                             as='a'
                                             my="1rem"
                                             mx="1rem"
-                                            
-                                            >
+                                            px={{ base: "2rem", md: "4rem" }}
+                                        >
                                             View
                                         </Button>
                                     </NextLink>
@@ -155,7 +156,8 @@ export default function DashboardPage({ user, docs }) {
                                         colorScheme="teal.800"
                                         bg="teal.500"
                                         my="1rem"
-                                        mx="1rem"                                        // onClick={() => downloadDoc(doc.docId)}
+                                        mx="1rem"
+                                        px={{ base: "2rem", md: "4rem" }}
                                     >
                                         Download
                                     </Button>
@@ -165,6 +167,7 @@ export default function DashboardPage({ user, docs }) {
                                         bg="teal.500"
                                         my="1rem"
                                         mx={{ base: '1rem', md: '1rem' }}
+                                        px={{ base: "2rem", md: "4rem" }}
                                         onClick={() => deleteDoc(doc._id)}>
 
                                         {loading ? <Spinner

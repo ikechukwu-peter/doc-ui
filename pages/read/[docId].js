@@ -13,6 +13,7 @@ const FileViewer = dynamic(() => import('react-file-viewer'), {
 const OpenDoc = () => {
     const router = useRouter()
     const { docId } = router.query
+    console.log(docId)
 
     const [doc, setDoc] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -42,7 +43,7 @@ const OpenDoc = () => {
                     }
                 })
                 if (docData) {
-                    setDoc(doc.data.data.url)
+                    setDoc(docData.data.data.url)
                 }
             } catch (error) {
                 console.log(error)
@@ -53,7 +54,6 @@ const OpenDoc = () => {
                     },
                     hideAfter: 3
                 });
-                setLoading(false)
             }
             finally {
                 setLoading(false)
@@ -65,11 +65,15 @@ const OpenDoc = () => {
 
     return (
         <>
-            <FileViewer
+            {loading ? <Text
+                fontSize="1.2rem"
+                mx="1.4rem"
+            > Fetching file...</Text> : <FileViewer
                 fileType={type}
                 filePath={doc}
                 // errorComponent={CustomErrorComponent}
-                onError={onError} />
+                onError={onError} />}
+
         </>
     );
 };
